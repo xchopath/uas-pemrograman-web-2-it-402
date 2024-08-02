@@ -34,9 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssssi", $title, $description, $image_path, $youtube_url, $approval);
 
     if ($stmt->execute()) {
-        echo "Material added successfully!";
+        $message_success = "Materi berhasil ditambahkan!";
     } else {
-        echo "Error: " . $stmt->error;
+        $message_error = "Error: " . $stmt->error;
     }
 
     // Close statement and connection
@@ -79,6 +79,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container mt-5">
         <h2 class="text-center mb-4">Tambah Materi</h2>
         <form method="POST" enctype="multipart/form-data">
+            <?php if (isset($message_error)): ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo htmlspecialchars($message_error); ?>
+                </div>
+            <?php else if (isset($message_success)): ?>
+                <div class="alert alert-success" role="alert">
+                    <?php echo htmlspecialchars($message_success); ?>
+                </div>
+            <?php endif; ?>
             <div class="mb-3">
                 <label for="title" class="form-label">Judul:</label>
                 <input type="text" class="form-control" name="title" id="title" required>

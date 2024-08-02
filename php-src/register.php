@@ -17,9 +17,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dbstatement->bind_param("ssss", $username, $email, $password, $default_role);
 
     if ($dbstatement->execute()) {
-        echo "Registration successful!";
+        $message_success = 'Registration Success';
     } else {
-        echo "Error: " . $dbstatement->error;
+        $message_error = "Error: " . $dbstatement->error;
     }
 
     // Close statement
@@ -66,6 +66,15 @@ $dbconn->close();
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <form action="register.php" method="POST" class="bg-secondary p-4 rounded">
+                    <?php if (isset($message_error)): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php echo htmlspecialchars($message_error); ?>
+                        </div>
+                    <?php else if (isset($message_success)): ?>
+                        <div class="alert alert-success" role="alert">
+                            <?php echo htmlspecialchars($message_success); ?>
+                        </div>
+                    <?php endif; ?>
                     <div class="mb-3">
                         <label for="username" class="form-label">Username:</label>
                         <input type="text" class="form-control" name="username" id="username" required>
