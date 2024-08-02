@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="alert alert-danger" role="alert">
                     <?php echo htmlspecialchars($message_error); ?>
                 </div>
-            <?php else if (isset($message_success)): ?>
+            <?php elseif (isset($message_success)): ?>
                 <div class="alert alert-success" role="alert">
                     <?php echo htmlspecialchars($message_success); ?>
                 </div>
