@@ -51,20 +51,22 @@ $result = $dbconn->query($sql);
         <div class="row">
             <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
-                    <div class="col-md-4 mb-4">
-                        <div class="card bg-secondary text-light">
-                            <?php if (!empty($row['image_path'])): ?>
-                                <img src="<?php echo htmlspecialchars($row['image_path']); ?>" class="card-img-top" alt="Image">
-                            <?php endif; ?>
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($row['title']); ?></h5>
-                                <p class="card-text"><?php echo htmlspecialchars($row['description']); ?></p>
-                                <?php if (!empty($row['youtube_url'])): ?>
-                                    <a href="view_material.php?id=<?php echo htmlspecialchars($row['id']); ?>" class="btn btn-primary">View</a>
-                                <?php endif; ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card bg-secondary text-light h-100">
+                        <?php if (!empty($row['image_path'])): ?>
+                            <div class="card-img-top-container" style="height: 200px;">
+                                <img src="<?php echo htmlspecialchars($row['image_path']); ?>" class="card-img-top h-100 w-100" alt="Image" style="object-fit: cover;">
                             </div>
+                        <?php endif; ?>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title"><?php echo htmlspecialchars($row['title']); ?></h5>
+                            <p class="card-text flex-grow-1"><?php echo htmlspecialchars($row['description']); ?></p>
+                            <?php if (!empty($row['youtube_url'])): ?>
+                                <a href="view_material.php?id=<?php echo htmlspecialchars($row['id']); ?>" class="btn btn-primary mt-auto">View</a>
+                            <?php endif; ?>
                         </div>
                     </div>
+                </div>
                 <?php endwhile; ?>
             <?php else: ?>
                 <p class="text-center">No materials found.</p>
