@@ -59,10 +59,10 @@ $result = $dbconn->query($sql);
                             </div>
                         <?php endif; ?>
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title fw-bolder"><?php echo htmlspecialchars($row['title']); ?></h5>
-                            <p class="card-text flex-grow-1"><?php echo htmlspecialchars($row['description']); ?></p>
+                            <h5 class="card-title fw-bolder text-truncate"><?php echo htmlspecialchars($row['title']); ?></h5>
+                            <p class="card-text flex-grow-1 text-truncate"><?php echo htmlspecialchars($row['description']); ?></p>
                             <?php if (!empty($row['youtube_url'])): ?>
-                                <a href="view_material.php?id=<?php echo htmlspecialchars($row['id']); ?>" class="btn btn-primary mt-auto">View</a>
+                                <a href="view_material.php?id=<?php echo htmlspecialchars($row['id']); ?>" class="btn btn-primary mt-auto">Lihat Materi</a>
                             <?php endif; ?>
                         </div>
                     </div>
