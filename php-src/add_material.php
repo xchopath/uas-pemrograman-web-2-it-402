@@ -21,9 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $target_file = $target_dir . basename($_FILES["image"]["name"]);
         $image_path = $target_file;
         
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-            echo "";
-        } else {
+        if (!move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
             $message_error = "Sorry, there was an error uploading your file.";
         }
     }
@@ -34,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssssi", $title, $description, $image_path, $youtube_url, $approval);
 
     if ($stmt->execute()) {
-        $message_success = "Materi berhasil ditambahkan!";
+        $message_success = "Materi berhasil ditambahkan dan menunggu persetujuan admin.";
     } else {
         $message_error = "Error: " . $stmt->error;
     }

@@ -20,7 +20,7 @@ $stmt->execute();
 $material = $stmt->get_result()->fetch_assoc();
 
 // Fetch discussions for the material
-$discussion_sql = "SELECT * FROM discussions WHERE material_id = ? ORDER BY created_at DESC";
+$discussion_sql = "SELECT * FROM discussions WHERE material_id = ? AND approval = 1 ORDER BY created_at DESC";
 $discussion_stmt = $dbconn->prepare($discussion_sql);
 $discussion_stmt->bind_param("i", $material_id);
 $discussion_stmt->execute();
