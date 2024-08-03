@@ -22,9 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $image_path = $target_file;
         
         if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-            echo "The file ". htmlspecialchars(basename($_FILES["image"]["name"])) . " has been uploaded.";
+            echo "";
         } else {
-            echo "Sorry, there was an error uploading your file.";
+            $message_error = "Sorry, there was an error uploading your file.";
         }
     }
 
